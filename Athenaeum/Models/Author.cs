@@ -11,9 +11,9 @@ namespace Athenaeum.Models
         public string FirstName { get; set; }
         [MaxLength(250)]
         public string LastName { get; set; }
-        public DateTime BirthDate { get; set; }
-        public DateTime DeathDate { get; set; }
-        public bool IsLiving { get; set; }
+        public DateTime? BirthDate { get; set; }
+        public DateTime? DeathDate { get; set; }
+        public bool? IsLiving { get; set; }
 
         [NotMapped]
         public string FullName => FirstName + " " + LastName;
