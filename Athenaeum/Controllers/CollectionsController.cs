@@ -29,6 +29,8 @@ namespace Athenaeum.Controllers
                 var tempCollection = await _context.Collection.Where(x => x.CollectionId == userCollection.CollectionId).FirstOrDefaultAsync();
                 collections.Add(tempCollection);
             }
+
+            collections.OrderBy(x => x.StartDate);
             return View(collections);
         }
     }
