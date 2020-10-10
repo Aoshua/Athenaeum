@@ -14,9 +14,12 @@ namespace Athenaeum
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public IWebHostEnvironment Env { get; set; }
+
+        public Startup(IConfiguration configuration, IWebHostEnvironment webHostEnvironment)
         {
             Configuration = configuration;
+            Env = webHostEnvironment;
         }
 
         public IConfiguration Configuration { get; }
@@ -27,6 +30,15 @@ namespace Athenaeum
             services.AddControllersWithViews();
             services.AddDbContext<Data.AthenaeumContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("AthenaeumContext")));
+
+            IMvcBuilder builder = services.AddRazorPages();
+
+#if DEBUG
+            if (Env.IsDevelopment())
+            {
+                builder.AddRazorRuntimeCompilation();
+            }
+#endif
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
