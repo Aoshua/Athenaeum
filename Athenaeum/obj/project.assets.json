@@ -5712,11 +5712,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Josh\\Projects\\1\\Athenaeum\\Athenaeum\\Athenaeum.csproj",
+      "projectUniqueName": "C:\\Users\\Josh\\Projects\\Athenaeum\\Athenaeum\\Athenaeum.csproj",
       "projectName": "Athenaeum",
-      "projectPath": "C:\\Users\\Josh\\Projects\\1\\Athenaeum\\Athenaeum\\Athenaeum.csproj",
+      "projectPath": "C:\\Users\\Josh\\Projects\\Athenaeum\\Athenaeum\\Athenaeum.csproj",
       "packagesPath": "C:\\Users\\Josh\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Josh\\Projects\\1\\Athenaeum\\Athenaeum\\obj\\",
+      "outputPath": "C:\\Users\\Josh\\Projects\\Athenaeum\\Athenaeum\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
