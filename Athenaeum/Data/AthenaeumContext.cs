@@ -1,18 +1,23 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Athenaeum.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Athenaeum.Data
 {
     public class AthenaeumContext : DbContext
     {
-        public AthenaeumContext(DbContextOptions<AthenaeumContext> options)
-            :base (options)
+        public AthenaeumContext(DbContextOptions<AthenaeumContext> options) :base (options)
         {
-
         }
 
+        public DbSet<Author> Author { get; set; }
+        public DbSet<Book> Book { get; set; }
+        public DbSet<BookAuthor> BookAuthor { get; set; }
+        public DbSet<BookGenre> BookGenre { get; set; }
+        public DbSet<BookInCollection> BookInCollection { get; set; }
+        public DbSet<Collection> Collection { get; set; }
+        public DbSet<Genre> Genre { get; set; }
+        public DbSet<Publisher> Publisher { get; set; }
+        public DbSet<UserBook> UserBook { get; set; }
+        public DbSet<UserCollection> UserCollection { get; set; }
     }
 }

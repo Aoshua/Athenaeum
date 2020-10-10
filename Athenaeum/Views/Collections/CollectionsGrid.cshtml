@@ -1,0 +1,34 @@
+﻿@model List<Athenaeum.Models.Collection>
+
+@{
+    ViewData["Title"] = "Collections";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Your Collections</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Started</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var collection in Model)
+        {
+            <tr>
+                <td>@collection.Title</td>
+                <td>@collection.StartDate</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@collection.CollectionId">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@collection.CollectionId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
