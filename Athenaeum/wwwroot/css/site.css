@@ -1,5 +1,46 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
+﻿:root {
+    --lightest-green: #11d99b;
+    --light-green: #00c39b;
+    --green: #00a988;
+    --dark-green: #126754;
+    --slate-blue: #3d5d8c;
+    --plasma-blue: #0db7e8;
+}
+
+
+/* Login
+-----------------------------------------------*/
+.login-cont {
+    margin: auto;
+    margin-top: 10%;
+    width: 50%;
+    border-radius: 15px;
+    padding: 15px;
+    min-width: 350px;
+    max-width: 590px;
+    background-color: #fff;
+}
+
+.btn-login {
+    background-color: #fff;
+    padding: 10px;
+    min-width: 200px;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 1.05rem;
+    color: #fff;
+    cursor: pointer;
+    transition: all .4s ease;
+}
+
+    .btn-login:hover {
+        background: rgb(0,195,155);
+        background: linear-gradient(45deg, rgba(0,195,155,1) 0%, rgba(61,93,140,1) 100%);
+    }
+
+
+/* Whatever this is
+-----------------------------------------------*/
 
 a.navbar-brand {
   white-space: normal;
@@ -23,6 +64,7 @@ a {
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
+
 
 /* Sticky footer styles
 -------------------------------------------------- */
@@ -51,6 +93,7 @@ button.accept-policy {
   line-height: inherit;
 }
 
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
@@ -70,16 +113,17 @@ body {
   line-height: 60px; /* Vertically center the text there */
 }
 
-.colors {
-    color: #11d99b; /* Lighest Green */
-    color: #00c39b; /* Light Green */
-    color: #00a988; /* Green */
-    color: #126754; /* Dark Green */
-    color: #3d5d8c; /* Slate Blue */
-    color: #0db7e8; /* Plasma Blue */
-}
-
-.gradient-1 {
+.gradient-1 { /* Lightest Green to Plasma Blue */
     background: rgb(0,195,155);
     background: linear-gradient(45deg, rgba(0,195,155,1) 0%, rgba(13,183,232,1) 100%);
+}
+
+.gradient-2 { /* Lightest Green to Dark Green */
+    background: rgb(0,195,155);
+    background: linear-gradient(45deg, rgba(0,195,155,1) 0%, rgba(18,103,84,1) 100%);
+}
+
+.gradient-3 { /* Lightest Green to Plasma Blue */
+    background: rgb(0,195,155);
+    background: linear-gradient(45deg, rgba(13,183,232,1) 0%, rgba(0,195,155,1) 100%);
 }

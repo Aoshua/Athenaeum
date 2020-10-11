@@ -12,51 +12,59 @@
     <link href="~/lib/bootstrap/dist/css/bootstrap-flatly.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" />
     <script src="https://kit.fontawesome.com/9c33572fdb.js" crossorigin="anonymous"></script>
-
-    <style>
-        .login-cont {
-            margin: auto;
-            margin-top: 10%;
-            width: 50%;
-            border-radius: 15px;
-            padding: 15px;
-            min-width: 350px;
-            max-width: 590px;
-            color: #fff !important;
-        }
-        .btn-login {
-            background-color: white;
-            color: #126754;
-            padding: 10px;
-            min-width: 200px;
-            border-radius: 20px;
-            text-align: center;
-            border: 2px solid #126754;
-            font-size: 1.05rem;
-        }
-    </style>
 </head>
-<body>
-    <div class="login-cont gradient-1">
+<body class="gradient-1">
+    <script>
+        function attemptLogin() {
+            const email = $('#email').val();
+            const password = $('#password').val();
+
+            console.log(`Attempting Login with... ${email} and ${password}`);
+
+            $.ajax({
+                url: '@Url.Action("AttemptLogin", "Account")',
+                dataType: 'json',
+                data: {
+                    email: email,
+                    password: password
+                },
+                success: function (data) {
+                    console.log(data);
+                }
+            });
+        }
+    </script>
+    <div class="login-cont">
         <div class="text-center" style="font-size: 2rem;">Athenaeum</div>
         <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            <input type="password" class="form-control" id="password" placeholder="Password">
         </div>
+        @if (ViewBag.Message != null)
+        {
+            var type = "alert-primary";
+
+            if ((bool)ViewBag.HasError)
+                type = "alert-danger";
+
+            <div class="alert @type" role="alert">
+                ViewBag.Message
+            </div>
+        }
         <div class="d-flex align-items-center justify-content-center">
-            <div class="btn-login">
+            <div class="btn-login gradient-3" asp-controller="Account" onclick="attemptLogin()">
                 Login
             </div>
         </div>
-        
+
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
+        <div class="container text-white">
             &copy; 2020 - Athenaeum - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
