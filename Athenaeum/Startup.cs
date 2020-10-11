@@ -65,7 +65,7 @@ namespace Athenaeum
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Collections}/{action=CollectionsGrid}/{id?}");
             });
         }
     }

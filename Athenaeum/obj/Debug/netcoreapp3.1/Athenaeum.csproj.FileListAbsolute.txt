@@ -440,3 +440,4 @@ C:\Users\Josh\Projects\Athenaeum\Athenaeum\obj\Debug\netcoreapp3.1\staticwebasse
 C:\Users\Josh\Projects\Athenaeum\Athenaeum\obj\Debug\netcoreapp3.1\Athenaeum.dll
 C:\Users\Josh\Projects\Athenaeum\Athenaeum\obj\Debug\netcoreapp3.1\Athenaeum.pdb
 C:\Users\Josh\Projects\Athenaeum\Athenaeum\obj\Debug\netcoreapp3.1\Athenaeum.genruntimeconfig.cache
+C:\Users\Josh\Projects\Athenaeum\Athenaeum\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs

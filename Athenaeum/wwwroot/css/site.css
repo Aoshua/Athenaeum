@@ -69,3 +69,17 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+.colors {
+    color: #11d99b; /* Lighest Green */
+    color: #00c39b; /* Light Green */
+    color: #00a988; /* Green */
+    color: #126754; /* Dark Green */
+    color: #3d5d8c; /* Slate Blue */
+    color: #0db7e8; /* Plasma Blue */
+}
+
+.gradient-1 {
+    background: rgb(0,195,155);
+    background: linear-gradient(45deg, rgba(0,195,155,1) 0%, rgba(13,183,232,1) 100%);
+}

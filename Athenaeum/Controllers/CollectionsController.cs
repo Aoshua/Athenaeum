@@ -20,18 +20,24 @@ namespace Athenaeum.Controllers
 
         public async Task<IActionResult> CollectionsGrid()
         {
-            var userId = 1; // Hardcoded for now
-            var userCollections = await _context.UserCollection.Where(x => x.UserId == userId).ToListAsync();
-
-            var collections = new List<Models.Collection>();
-            foreach (var userCollection in userCollections)
+            if (!string.IsNullOrEmpty(Request.Cookies["UserId"]))
             {
-                var tempCollection = await _context.Collection.Where(x => x.CollectionId == userCollection.CollectionId).FirstOrDefaultAsync();
-                collections.Add(tempCollection);
-            }
+                var userId = int.Parse(Request.Cookies["UserId"]);
+                var userCollections = await _context.UserCollection.Where(x => x.UserId == userId).ToListAsync();
 
-            collections.OrderBy(x => x.StartDate);
-            return View(collections);
+                var collections = new List<Models.Collection>();
+                foreach (var userCollection in userCollections)
+                {
+                    var tempCollection = await _context.Collection.Where(x => x.CollectionId == userCollection.CollectionId).FirstOrDefaultAsync();
+                    collections.Add(tempCollection);
+                }
+
+                collections.OrderBy(x => x.StartDate);
+                return View(collections);
+            } else
+            {
+                return RedirectToAction("Login", "Account");
+            }
         }
     }
 }

@@ -17,6 +17,7 @@ namespace Athenaeum.Data
         public DbSet<Collection> Collection { get; set; }
         public DbSet<Genre> Genre { get; set; }
         public DbSet<Publisher> Publisher { get; set; }
+        public DbSet<User> User { get; set; }
         public DbSet<UserBook> UserBook { get; set; }
         public DbSet<UserCollection> UserCollection { get; set; }
     }
