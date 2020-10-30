@@ -38,7 +38,7 @@ namespace Athenaeum.Controllers
             }
         }
 
-        public async Task<IActionResult> Logout()
+        public IActionResult Logout()
         {
             Response.Cookies.Delete("UserId");
             return RedirectToAction("Login", "Account");
