@@ -33,7 +33,7 @@ namespace Athenaeum.Controllers
                 }
 
                 collections.OrderBy(x => x.StartDate);
-                return View(collections);
+                return View((object)Newtonsoft.Json.JsonConvert.SerializeObject(collections)); //return View(collections);
             } else
             {
                 return RedirectToAction("Login", "Account");

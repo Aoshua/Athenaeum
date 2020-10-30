@@ -1,33 +1,49 @@
-﻿@model List<Athenaeum.Models.Collection>
+﻿@model string
 
 @{
     ViewData["Title"] = "Collections";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Your Collections</h2>
-<p>
-    <a asp-action="Create"><i class="fas fa-plus"></i>&ensp;New Collection</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Started</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var collection in Model)
-        {
+<div id="app">
+    <h2>Your Collections</h2>
+    <p>
+        <a asp-action="Create"><i class="fas fa-plus"></i>&ensp;New Collection</a>
+    </p>
+    <table class="table">
+        <thead>
             <tr>
-                <td>@collection.Title</td>
-                <td>@collection.StartDate.ToShortDateString()</td>
+                <th>Title</th>
+                <th>Started</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="collection in collections">
+                <td>{{collection.Title}}</td>
+                <td>{{collection.StartDate | formatDateShort}}</td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@collection.CollectionId">Edit</a> |
-                    <a asp-action="Delete" asp-route-id="@collection.CollectionId">Delete</a>
+                    <a asp-action="Edit" asp-route-id="{{collection.CollectionId}}">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="{{collection.CollectionId}}">Delete</a>
                 </td>
             </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    let collections = JSON.parse('@Html.Raw(Model)');
+    //collections[1] = { CollectionId: 2, StartDate: '2020-09-24T16:42:40.71', Title: 'Test Collection' };
+
+    Vue.filter('formatDateShort', function (value) {
+        return (new Date(Date.parse(value))).toLocaleDateString();
+    });
+
+    let app = new Vue({
+        el: '#app',
+        data: {
+            collections: collections
         }
-    </tbody>
-</table>
+    });
+
+</script>
