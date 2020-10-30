@@ -26,8 +26,8 @@ namespace Athenaeum.Controllers
         public async Task<IActionResult> AttemptLogin(string email, string password)
         {
             var allegedUser = await _context.User.Where(x => x.Email == email).FirstOrDefaultAsync();
-            var passHash = Services.Cryptographer.ComputeSha256Hash(password + allegedUser.Salt);
-            if(allegedUser.Password == passHash)
+            var passHash = Services.Cryptographer.ComputeSha256Hash(password + allegedUser.Salt).ToUpper(); //MyPass111
+            if(allegedUser.Password.ToUpper() == passHash)
             {
                 Response.Cookies.Append("UserId", allegedUser.UserId.ToString());
                 return RedirectToAction("CollectionsGrid", "Collections");
@@ -36,6 +36,12 @@ namespace Athenaeum.Controllers
                 // Login failed
                 return RedirectToAction("Login", "Account", true, "Failed to authenticate.");
             }
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            Response.Cookies.Delete("UserId");
+            return RedirectToAction("Login", "Account");
         }
     }
 }

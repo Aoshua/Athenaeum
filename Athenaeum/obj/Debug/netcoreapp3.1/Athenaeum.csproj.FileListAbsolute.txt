@@ -412,7 +412,6 @@ C:\Users\Josh\Projects\Athenaeum\Athenaeum\bin\Debug\netcoreapp3.1\runtimes\win-
 C:\Users\Josh\Projects\Athenaeum\Athenaeum\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\Josh\Projects\Athenaeum\Athenaeum\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\Josh\Projects\Athenaeum\Athenaeum\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\Josh\Projects\Athenaeum\Athenaeum\obj\Debug\netcoreapp3.1\Athenaeum.csprojAssemblyReference.cache
 C:\Users\Josh\Projects\Athenaeum\Athenaeum\obj\Debug\netcoreapp3.1\Athenaeum.AssemblyInfoInputs.cache
 C:\Users\Josh\Projects\Athenaeum\Athenaeum\obj\Debug\netcoreapp3.1\Athenaeum.AssemblyInfo.cs
 C:\Users\Josh\Projects\Athenaeum\Athenaeum\obj\Debug\netcoreapp3.1\Athenaeum.csproj.CoreCompileInputs.cache
@@ -423,6 +422,7 @@ C:\Users\Josh\Projects\Athenaeum\Athenaeum\obj\Debug\netcoreapp3.1\Athenaeum.Raz
 C:\Users\Josh\Projects\Athenaeum\Athenaeum\obj\Debug\netcoreapp3.1\Athenaeum.TagHelpers.input.cache
 C:\Users\Josh\Projects\Athenaeum\Athenaeum\obj\Debug\netcoreapp3.1\Athenaeum.TagHelpers.output.cache
 C:\Users\Josh\Projects\Athenaeum\Athenaeum\obj\Debug\netcoreapp3.1\Athenaeum.RazorCoreGenerate.cache
+C:\Users\Josh\Projects\Athenaeum\Athenaeum\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
 C:\Users\Josh\Projects\Athenaeum\Athenaeum\obj\Debug\netcoreapp3.1\Razor\Views\Collections\CollectionsGrid.cshtml.g.cs
 C:\Users\Josh\Projects\Athenaeum\Athenaeum\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\Josh\Projects\Athenaeum\Athenaeum\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
@@ -440,4 +440,3 @@ C:\Users\Josh\Projects\Athenaeum\Athenaeum\obj\Debug\netcoreapp3.1\staticwebasse
 C:\Users\Josh\Projects\Athenaeum\Athenaeum\obj\Debug\netcoreapp3.1\Athenaeum.dll
 C:\Users\Josh\Projects\Athenaeum\Athenaeum\obj\Debug\netcoreapp3.1\Athenaeum.pdb
 C:\Users\Josh\Projects\Athenaeum\Athenaeum\obj\Debug\netcoreapp3.1\Athenaeum.genruntimeconfig.cache
-C:\Users\Josh\Projects\Athenaeum\Athenaeum\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs

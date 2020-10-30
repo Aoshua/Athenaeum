@@ -15,7 +15,7 @@
 </head>
 <body class="gradient-1">
     <script>
-        function attemptLogin() {
+        @*function attemptLogin() {
             const email = $('#email').val();
             const password = $('#password').val();
 
@@ -32,36 +32,38 @@
                     console.log(data);
                 }
             });
-        }
+        }*@
     </script>
-    <div class="login-cont">
-        <div class="text-center" style="font-size: 2rem;">Athenaeum</div>
-        <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
-        </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="Password">
-        </div>
-        @if (ViewBag.Message != null)
-        {
-            var type = "alert-primary";
-
-            if ((bool)ViewBag.HasError)
-                type = "alert-danger";
-
-            <div class="alert @type" role="alert">
-                ViewBag.Message
+    <form action="/Account/AttemptLogin" method="post">
+        <div class="login-cont">
+            <div class="text-center" style="font-size: 2rem;">Athenaeum</div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
             </div>
-        }
-        <div class="d-flex align-items-center justify-content-center">
-            <div class="btn-login gradient-3" asp-controller="Account" onclick="attemptLogin()">
-                Login
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
             </div>
-        </div>
+            @if (ViewBag.Message != null)
+            {
+                var type = "alert-primary";
 
-    </div>
+                if ((bool)ViewBag.HasError)
+                    type = "alert-danger";
+
+                <div class="alert @type" role="alert">
+                    ViewBag.Message
+                </div>
+            }
+            <div class="d-flex align-items-center justify-content-center">
+                <button type="submit" class="btn-login gradient-3">
+                    Login
+                </button>
+            </div>
+
+        </div>
+    </form>
 
     <footer class="border-top footer text-muted">
         <div class="container text-white">
