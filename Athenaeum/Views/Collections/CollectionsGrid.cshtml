@@ -20,7 +20,9 @@
         </thead>
         <tbody>
             <tr v-for="collection in collections">
-                <td>{{collection.Title}}</td>
+                <td>
+                    <a asp-action="ShowBooks" asp-route-collectionId="{{collection.CollectionId}}">{{collection.Title}}</a>
+                </td>
                 <td>{{collection.StartDate | formatDateShort}}</td>
                 <td>
                     <a asp-action="Edit" asp-route-id="{{collection.CollectionId}}">Edit</a> |
