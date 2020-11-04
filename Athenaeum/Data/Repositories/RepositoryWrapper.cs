@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using Athenaeum.Data.Repositories.Interfaces;
+using System.Threading.Tasks;
 
 namespace Athenaeum.Data.Repositories
 {
@@ -6,10 +7,17 @@ namespace Athenaeum.Data.Repositories
     {
         private AthenaeumContext _context;
         private IBookInCollectionRepo _bookInCollection;
+        private IUserCollectionRepo _userCollection;
+        private ICollectionRepo _collection;
 
         public RepositoryWrapper(AthenaeumContext context)
         {
             _context = context;
+        }
+
+        public async Task SaveAsync()
+        {
+            await _context.SaveChangesAsync();
         }
 
         public IBookInCollectionRepo BookInCollection
@@ -24,9 +32,28 @@ namespace Athenaeum.Data.Repositories
             }
         }
 
-        public async Task SaveAsync()
+        public IUserCollectionRepo UserCollection
         {
-            await _context.SaveChangesAsync();
+            get
+            {
+                if (_userCollection == null)
+                {
+                    _userCollection = new UserCollectionRepo(_context);
+                }
+                return _userCollection;
+            }
+        }
+
+        public ICollectionRepo Collection
+        {
+            get
+            {
+                if(_collection == null)
+                {
+                    _collection = new CollectionRepo(_context);
+                }
+                return _collection;
+            }
         }
     }
 }

@@ -14,11 +14,11 @@ namespace Athenaeum.Controllers
     public class CollectionsController : Controller
     {
         private IRepositoryWrapper _repo;
-        private AthenaeumContext _context;
+        //private AthenaeumContext _context;
 
-        public CollectionsController(AthenaeumContext context, IRepositoryWrapper repository)
+        public CollectionsController(IRepositoryWrapper repository)
         {
-            _context = context;
+            //_context = context;
             _repo = repository;
         }
 
@@ -27,12 +27,12 @@ namespace Athenaeum.Controllers
             if (!string.IsNullOrEmpty(Request.Cookies["UserId"]))
             {
                 var userId = int.Parse(Request.Cookies["UserId"]);
-                var userCollections = await _context.UserCollection.Where(x => x.UserId == userId).ToListAsync();
+                var userCollections = await _repo.UserCollection.GetUserCollectionsAsync(userId); //_context.UserCollection.Where(x => x.UserId == userId).ToListAsync();
 
                 var collections = new List<Models.Collection>();
                 foreach (var userCollection in userCollections)
                 {
-                    var tempCollection = await _context.Collection.Where(x => x.CollectionId == userCollection.CollectionId).FirstOrDefaultAsync();
+                    var tempCollection = await _repo.Collection.GetCollectionById(userCollection.CollectionId); //_context.Collection.Where(x => x.CollectionId == userCollection.CollectionId).FirstOrDefaultAsync();
                     collections.Add(tempCollection);
                 }
 
