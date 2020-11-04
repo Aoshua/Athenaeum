@@ -1,24 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Athenaeum.Data;
 using Athenaeum.Data.Repositories;
-using Athenaeum.Models;
 using Athenaeum.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
 
 namespace Athenaeum.Controllers
 {
     public class CollectionsController : Controller
     {
         private IRepositoryWrapper _repo;
-        //private AthenaeumContext _context;
 
         public CollectionsController(IRepositoryWrapper repository)
         {
-            //_context = context;
             _repo = repository;
         }
 
@@ -27,17 +21,17 @@ namespace Athenaeum.Controllers
             if (!string.IsNullOrEmpty(Request.Cookies["UserId"]))
             {
                 var userId = int.Parse(Request.Cookies["UserId"]);
-                var userCollections = await _repo.UserCollection.GetUserCollectionsAsync(userId); //_context.UserCollection.Where(x => x.UserId == userId).ToListAsync();
+                var userCollections = await _repo.UserCollection.GetUserCollectionsAsync(userId);
 
                 var collections = new List<Models.Collection>();
                 foreach (var userCollection in userCollections)
                 {
-                    var tempCollection = await _repo.Collection.GetCollectionById(userCollection.CollectionId); //_context.Collection.Where(x => x.CollectionId == userCollection.CollectionId).FirstOrDefaultAsync();
+                    var tempCollection = await _repo.Collection.GetCollectionById(userCollection.CollectionId);
                     collections.Add(tempCollection);
                 }
 
                 collections.OrderBy(x => x.StartDate);
-                return View(CodeUtility.SerializeObject(collections)); //return View(collections);
+                return View(CodeUtility.SerializeObject(collections));
             }
             else
             {
