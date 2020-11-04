@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Athenaeum.Data.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,10 +30,11 @@ namespace Athenaeum
         {
             services.AddControllersWithViews();
             services.AddDbContext<Data.AthenaeumContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("AthenaeumContext")));
+                options.UseSqlServer(Configuration.GetConnectionString("AthenaeumContext"))); // Necessary to use SQL Server
+            services.AddScoped<IRepositoryWrapper, RepositoryWrapper>(); // Necessary to use IRepositoryWrapper
 
+            // The following allows for changes to views to be seen while running:
             IMvcBuilder builder = services.AddRazorPages();
-
 #if DEBUG
             if (Env.IsDevelopment())
             {
