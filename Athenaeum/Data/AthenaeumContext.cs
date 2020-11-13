@@ -1,4 +1,5 @@
 ﻿using Athenaeum.Models;
+using Athenaeum.Models.Views;
 using Microsoft.EntityFrameworkCore;
 
 namespace Athenaeum.Data
@@ -20,5 +21,7 @@ namespace Athenaeum.Data
         public DbSet<User> User { get; set; }
         public DbSet<UserBook> UserBook { get; set; }
         public DbSet<UserCollection> UserCollection { get; set; }
+
+        public DbSet<view_BookInCollection_UserBook> view_BookInCollection_UserBook { get; set; }
     }
 }

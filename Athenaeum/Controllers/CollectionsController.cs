@@ -1,19 +1,21 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Athenaeum.Data.Repositories;
+using Athenaeum.Data;
 using Athenaeum.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Athenaeum.Controllers
 {
     public class CollectionsController : Controller
     {
-        private IRepositoryWrapper _repo;
+        //private IRepositoryWrapper _repo;
+        private readonly AthenaeumContext _context;
 
-        public CollectionsController(IRepositoryWrapper repository)
+        public CollectionsController(AthenaeumContext context)
         {
-            _repo = repository;
+            _context = context;
         }
 
         public async Task<IActionResult> CollectionsGrid()
@@ -21,12 +23,12 @@ namespace Athenaeum.Controllers
             if (!string.IsNullOrEmpty(Request.Cookies["UserId"]))
             {
                 var userId = int.Parse(Request.Cookies["UserId"]);
-                var userCollections = await _repo.UserCollection.GetUserCollectionsAsync(userId);
+                var userCollections = await _context.UserCollection.Where(x => x.UserId == userId).ToListAsync();
 
                 var collections = new List<Models.Collection>();
                 foreach (var userCollection in userCollections)
                 {
-                    var tempCollection = await _repo.Collection.GetCollectionById(userCollection.CollectionId);
+                    var tempCollection = await _context.Collection.Where(x => x.CollectionId == userCollection.CollectionId).FirstOrDefaultAsync();
                     collections.Add(tempCollection);
                 }
 
@@ -44,16 +46,7 @@ namespace Athenaeum.Controllers
             if (!string.IsNullOrEmpty(Request.Cookies["UserId"]))
             {
                 var userId = int.Parse(Request.Cookies["UserId"]);
-                //var books =
-                //    from collectedBooks in _context.BookInCollection
-                //    join userBooks in _context.UserBook on collectedBooks.BookId equals userBooks.BookId
-                //    select new { BookInCollectionId = collectedBooks.BookInCollectionId, BookId = collectedBooks.BookId,
-                //                PublisherId = collectedBooks.PublisherId, PublicationDate = collectedBooks.PublicationDate,
-                //                PurchaseDate = collectedBooks.PurchaseDate, CollectionId = collectedBooks.CollectionId,
-                //                PurchaseLocation = collectedBooks.PurchaseLocation, UserBookId = userBooks.UserBookId,
-                //                UserId = userBooks.UserId, StartedDate = userBooks.StartedDate, CompletedDate = userBooks.CompletedDate};
-
-                var books = await _repo.BookInCollection.GetBooksInCollectionAsync(collectionId);
+                var books = await _context.view_BookInCollection_UserBook.Where(x => x.CollectionId == collectionId).ToListAsync();
 
                 return RedirectToAction("Login", "Account");
             }
