@@ -48,7 +48,7 @@ namespace Athenaeum.Controllers
                 var userId = int.Parse(Request.Cookies["UserId"]);
                 var books = await _context.view_BookInCollection_UserBook.Where(x => x.CollectionId == collectionId).ToListAsync();
 
-                return RedirectToAction("Login", "Account");
+                return View("BooksInCollection", CodeUtility.SerializeObject(books));
             }
             else
             {

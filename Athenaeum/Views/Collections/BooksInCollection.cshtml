@@ -1,0 +1,15 @@
+﻿@model string
+
+@{
+    ViewData["Title"] = "Books In Collection";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h1>Books In Collection</h1>
+</div>
+
+<script>
+    let books = JSON.parse('@Html.Raw(Model)');
+    console.log(books);
+</script>

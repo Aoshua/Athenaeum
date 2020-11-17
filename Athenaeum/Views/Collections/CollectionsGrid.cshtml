@@ -21,7 +21,7 @@
         <tbody>
             <tr v-for="collection in collections">
                 <td>
-                    <a asp-action="ShowBooks" asp-route-collectionId="{{collection.CollectionId}}">{{collection.Title}}</a>
+                    <a :href="appendActionUrl(collection.CollectionId)">{{collection.Title}}</a>
                 </td>
                 <td>{{collection.StartDate | formatDateShort}}</td>
                 <td>
@@ -35,16 +35,16 @@
 
 <script>
     let collections = JSON.parse('@Html.Raw(Model)');
-    //collections[1] = { CollectionId: 2, StartDate: '2020-09-24T16:42:40.71', Title: 'Test Collection' };
-
-    Vue.filter('formatDateShort', function (value) {
-        return (new Date(Date.parse(value))).toLocaleDateString();
-    });
 
     let app = new Vue({
         el: '#app',
         data: {
             collections: collections
+        },
+        methods: {
+            appendActionUrl: function (param) {
+                return `/Collections/ShowBooks?collectionId=${param}`;
+            }
         }
     });
 
