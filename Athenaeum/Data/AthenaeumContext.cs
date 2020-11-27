@@ -23,5 +23,6 @@ namespace Athenaeum.Data
         public DbSet<UserCollection> UserCollection { get; set; }
 
         public DbSet<view_BookInCollection_UserBook> view_BookInCollection_UserBook { get; set; }
+        public DbSet<view_BookInCollection_Publisher> view_BookInCollection_Publisher { get; set; }
     }
 }

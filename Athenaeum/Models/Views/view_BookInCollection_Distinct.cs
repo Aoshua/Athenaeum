@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Athenaeum.Models.Views
 {
-    public class view_BookInCollection_UserBook
+    public class view_BookInCollection_Publisher
     {
         [Key]
         public int BookInCollectionId { get; set; }
@@ -14,11 +17,6 @@ namespace Athenaeum.Models.Views
         public DateTime? PurchaseDate { get; set; }
         public int CollectionId { get; set; }
         public string PurchaseLocation { get; set; }
-        public int UserBookId { get; set; }
-        public int UserId { get; set; }
-        public DateTime? StartedDate { get; set; }
-        public DateTime? CompletedDate { get; set; }
-        public string Note { get; set; }
         public string SeriesTitle { get; set; }
         public int? SeriesOrder { get; set; }
         public string Title { get; set; }

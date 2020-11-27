@@ -1,0 +1,116 @@
+﻿@model int
+
+@{
+    ViewData["Title"] = "Add Book";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    h5 {
+        color: #707880;
+    }
+</style>
+
+<form action="AddBook" method="post">
+    <h2 class="text-center">Add Book</h2>
+    <h5>General Details</h5>
+    <hr />
+    <div class="form-row">
+        <div class="col-12 col-md-6">
+            <div class="form-group">
+                <label for="bookTitle">Book Title:</label>
+                <input type="text" class="form-control" name="bookTitle" id="bookTitle" required>
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="form-group">
+                <label for="pageCount">Page Count:</label>
+                <input type="number" class="form-control" name="pageCount" id="pageCount">
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-12 col-md-6">
+            <div class="form-group">
+                <label for="seriesTitle">Series Title:</label>
+                <input type="text" class="form-control" name="seriesTitle" id="seriesTitle">
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="form-group">
+                <label for="seriesOrder">Number in Series:</label>
+                <input type="number" class="form-control" name="seriesOrder" id="seriesOrder">
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-12">
+            <label for="genres">Genres</label>
+            <select multiple class="form-control" name="genres" id="genres">
+                <option value="1">Action and Adventure</option>
+                <option value="2">Classic</option>
+                <option value="3">Mystery</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-12 col-md-6">
+            <div class="form-group">
+                <label for="publisherId">Publisher</label>
+                <select class="form-control" id="publisherId">
+                    <option value="1">Penguin Random House</option>
+                    <option value="2">Hachette Livre</option>
+                    <option value="3">HarperCollins</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="form-group">
+                <label for="publicationDate">Publication Date:</label>
+                <input type="date" class="form-control" name="publicationDate" id="publicationDate">
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-12 col-md-6">
+            <div class="form-group">
+                <label for="purchaseDate">Purchase Date:</label>
+                <input type="date" class="form-control" name="purchaseDate" id="purchaseDate">
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="form-group">
+                <label for="purchaseLocation">Purchase Location:</label>
+                <input type="text" class="form-control" name="purchaseLocation" id="purchaseLocation">
+            </div>
+        </div>
+    </div>
+    <br />
+    <h5>Reading Details</h5>
+    <hr />
+    <div class="form-row">
+        <div class="col-12 col-md-6">
+            <div class="form-group">
+                <label for="startedDate">Started Reading:</label>
+                <input type="datetime-local" class="form-control" name="startedDate" id="startedDate">
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="form-group">
+                <label for="completedDate">Finished Reading:</label>
+                <input type="datetime-local" class="form-control" name="completedDate" id="completedDate">
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="note">Reading Notes:</label>
+                <textarea class="form-control" name="note" id="note" rows="4"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <input type="hidden" name="collectionId" value="@Model" />
+
+    <button class="btn btn-success" type="submit">Add Book</button>
+</form>

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Athenaeum.Data;
@@ -46,14 +47,38 @@ namespace Athenaeum.Controllers
             if (!string.IsNullOrEmpty(Request.Cookies["UserId"]))
             {
                 var userId = int.Parse(Request.Cookies["UserId"]);
-                var books = await _context.view_BookInCollection_UserBook.Where(x => x.CollectionId == collectionId).ToListAsync();
+                var collection = await _context.Collection.Where(x => x.CollectionId == collectionId).FirstOrDefaultAsync();
+                var books = await _context.view_BookInCollection_Publisher.Where(x => x.CollectionId == collectionId).ToListAsync();
 
-                return View("BooksInCollection", CodeUtility.SerializeObject(books));
+                //var vm = new ShowBooksVM
+                //{
+                //    CollectionTitle = collection.Title,
+                //    Books = CodeUtility.SerializeObject(books).ToString()
+                //};
+
+                return View("BooksInCollection", CodeUtility.SerializeObject(new { Title = collection.Title, Books = books}));
             }
             else
             {
                 return RedirectToAction("Login", "Account");
             }
         }
+
+        public IActionResult ShowCreateBook(int collectionId)
+        {
+            return View("CreateBook", collectionId);
+        }
+
+        public async Task<IActionResult> AddBook(string bookTitle, int? pageCount, string seriesTitle, int? seriesOrder, string genres, int? publisherId, DateTime? publicationDate, DateTime? purchaseDate, string purchaseLocation, DateTime? startedDate, DateTime? completedDate, string notes, string collectionId)
+        {
+            // Lots of complicated add logic
+            return RedirectToAction("ShowBooks", int.Parse(collectionId));
+        }
+    }
+
+    public class ShowBooksVM
+    {
+        public string CollectionTitle { get; set; }
+        public string Books { get; set; }
     }
 }

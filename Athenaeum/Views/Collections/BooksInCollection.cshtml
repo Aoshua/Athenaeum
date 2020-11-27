@@ -5,11 +5,64 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div>
-    <h1>Books In Collection</h1>
+<div id="app">
+    <h2>{{title}} - Books</h2>
+    <div class="text-right mb-1">
+        <a :href="appendCreateActionUrl(books[0].CollectionId)"><i class="fas fa-plus"></i>&ensp;New Book</a>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Series</th>
+                <th>Pages</th>
+                <th>Publisher</th>
+                <th>Published</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="book in books">
+                <td>
+                    <a :href="appendDetailActionUrl(book.BookInCollectionId)">{{book.Title}}</a>
+                </td>
+                <td>{{formatSeriesTitle(book.SeriesTitle, book.SeriesOrder)}}</td> <!-- series (#) -->
+                <td>{{book.PageCount}}</td>
+                <td>{{book.PublisherName}}</td>
+                <td>{{book.PublicationDate | formatDateShort}}</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="{{book.BookInCollectionId}}">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="{{book.BookInCollectionId}}">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
 <script>
-    let books = JSON.parse('@Html.Raw(Model)');
-    console.log(books);
+    let model = JSON.parse('@Html.Raw(Model)');
+    let title = model.Title;
+    let books = model.Books;
+
+    let app = new Vue({
+        el: '#app',
+        data: {
+            title,
+            books
+        },
+        methods: {
+            appendDetailActionUrl(param) {
+                return `/Collections/ShowBookDetails?bookInCollectionId=${param}`;
+            },
+            appendCreateActionUrl(param) {
+                return `/Collections/ShowCreateBook?collectionId=${param}`;
+            },
+            formatSeriesTitle(title, num) {
+                if (title)
+                    return `${title} (${num})`;
+                else
+                    return "";
+            }
+        }
+    });
 </script>
