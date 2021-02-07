@@ -2,7 +2,18 @@ version: '3.4'
 
 services:
   athenaeum-webapi:
+    container_name: athen_webapi_cont
     image: ${DOCKER_REGISTRY-}athenaeumwebapi
     build:
       context: .
       dockerfile: athenaeum-webapi/Dockerfile
+    ports:
+      - "49264:443" 
+  athenaeum-ui:
+    container_name: athen_ui_cont
+    image: ${DOCKER_REGISTRY-}athenaeumui
+    build:
+      context: .
+      dockerfile: athenaeum-ui/Dockerfile
+    ports:
+      - "49265:8080"
