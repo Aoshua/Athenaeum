@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  athenaeum-webapi:
+    image: ${DOCKER_REGISTRY-}athenaeumwebapi
+    build:
+      context: .
+      dockerfile: athenaeum-webapi/Dockerfile
