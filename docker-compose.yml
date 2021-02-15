@@ -9,11 +9,11 @@ services:
       dockerfile: athenaeum-webapi/Dockerfile
     ports:
       - "49264:443" 
-  athenaeum-ui:
-    container_name: athen_ui_cont
-    image: ${DOCKER_REGISTRY-}athenaeumui
-    build:
-      context: .
-      dockerfile: athenaeum-ui/Dockerfile
-    ports:
-      - "49265:8080"
+  #athenaeum-ui:
+  #  container_name: athen_ui_cont
+  #  image: ${DOCKER_REGISTRY-}athenaeumui
+  #  build:
+  #    context: .
+  #    dockerfile: athenaeum-ui/Dockerfile
+  #  ports:
+  #    - "49265:8080"
