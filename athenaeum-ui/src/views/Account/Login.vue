@@ -20,6 +20,8 @@
 </template>
 
 <script>
+    import axios from "axios";
+
     export default {
         name: "Login",
         data() {
@@ -28,10 +30,36 @@
                 password: "",
             };
         },
+        mounted() {
+            axios
+                .get(`${store.state.apiUrl}/api/application/testconnection`)
+                .then((response) => {
+                    console.log(response);
+                })
+                .catch((e) => {
+                    console.log(e);
+                });
+        },
         methods: {
             attemptLogin() {
                 console.log(this.email);
                 console.log(this.password);
+
+                this.$store
+                    .dispatch("logIn", {
+                        email: this.email,
+                        password: this.password,
+                    })
+                    .then(
+                        (r) => {
+                            if (r.success == true) this.error = false;
+                            else console.log(r.error);
+                        },
+                        (error) => {
+                            this.error = true;
+                            console.log("From login.vue", error);
+                        }
+                    );
             },
         },
     };
