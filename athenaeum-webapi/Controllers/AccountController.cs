@@ -12,5 +12,11 @@ namespace athenaeum_webapi.Controllers
         {
             return Ok();
         } 
+
+        //public class LoginAttempt
+        //{
+        //    public string Email { get; set; }
+        //    public string Passwor
+        //}
     }
 }

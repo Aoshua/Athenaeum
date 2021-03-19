@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Vuex from "vuex";
+import axios from 'axios';
 import { colors } from '../assets/js/colors';
 
 Vue.use(Vuex);
@@ -14,6 +15,7 @@ export default new Vuex.Store({
         isDarkMode: false,
         darkModeColors: colors.darkModeColors,
         lightModeColors: colors.lightModeColors,
+        apiUrl: 'https://localhost:44343'
     },
     mutations: {
         logIn(state, data) {
@@ -35,13 +37,13 @@ export default new Vuex.Store({
     },
     actions: {
         logIn(context, login) {
-            console.log('store > actions > logIn');
+            //console.log('store > actions > logIn');
 			return new Promise((resolve, reject) => {
 
-				axios.post(`${this.state.apiUrl}/api/account/submitlogin`, 
+				axios.post(`${this.state.apiUrl}/account/Authenticate`, 
 					{
-						Username: login.username,
-						Password: login.password
+						email: login.username,
+						password: login.password
 					},
 					this.state.authHeader
 				).then(response => {

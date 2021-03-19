@@ -20,7 +20,8 @@
 </template>
 
 <script>
-    import axios from "axios";
+    import axios from 'axios';
+    import store from '../../store/index.js';
 
     export default {
         name: "Login",
@@ -32,7 +33,7 @@
         },
         mounted() {
             axios
-                .get(`${store.state.apiUrl}/api/application/testconnection`)
+                .get(`${store.state.apiUrl}/application/testconnection`)
                 .then((response) => {
                     console.log(response);
                 })
@@ -42,8 +43,8 @@
         },
         methods: {
             attemptLogin() {
-                console.log(this.email);
-                console.log(this.password);
+                //console.log(this.email);
+                //console.log(this.password);
 
                 this.$store
                     .dispatch("logIn", {
