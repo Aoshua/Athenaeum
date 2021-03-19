@@ -1,19 +1,23 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace athenaeum_webapi.Data
 {
-    public class Author
+    public class User
     {
-        public int AuthorId { get; set; }
+        public int UserId { get; set; }
         [MaxLength(250)]
         public string FirstName { get; set; }
         [MaxLength(250)]
         public string LastName { get; set; }
-        public DateTime? BirthDate { get; set; }
-        public DateTime? DeathDate { get; set; }
-        public bool? IsLiving { get; set; }
+        public string Email { get; set; }
+        [MaxLength(64)]
+        public string Password { get; set; }
+        [MaxLength(36)]
+        public string Salt { get; set; }
+
+        public List<UserCollection> Collections { get; set; }
 
         [NotMapped]
         public string FullName => FirstName + " " + LastName;

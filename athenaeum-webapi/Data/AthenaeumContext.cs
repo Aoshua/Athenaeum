@@ -20,7 +20,17 @@ namespace athenaeum_webapi.Data
         public DbSet<UserBook> UserBook { get; set; }
         public DbSet<UserCollection> UserCollection { get; set; }
 
-        public DbSet<view_BookInCollection_UserBook> view_BookInCollection_UserBook { get; set; }
-        public DbSet<view_BookInCollection_Publisher> view_BookInCollection_Publisher { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>()
+                .HasMany(p => p.Collections)
+                .WithOne();
+
+            modelBuilder.Entity<UserCollection>()
+                .HasOne(p => p.Collection);
+
+            modelBuilder.Entity<UserCollection>()
+                .HasOne(p => p.User);
+        }
     }
 }
