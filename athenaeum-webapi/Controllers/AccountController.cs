@@ -4,11 +4,19 @@ using Microsoft.AspNetCore.Mvc;
 namespace athenaeum_webapi.Controllers
 {
     [Authorize]
+    [ApiController]
+    [Route("[controller]/[action]")]
     public class AccountController : ControllerBase
     {
+        public class Credentials
+        {
+            public string Email { get; set; }
+            public string Password { get; set; }
+        }
+
         [AllowAnonymous]
-        [HttpGet]
-        public IActionResult Authenticate(string email, string password)
+        [HttpPost]
+        public IActionResult Authenticate([FromBody] Credentials credentials)
         {
             return Ok();
         } 

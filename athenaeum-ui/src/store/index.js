@@ -37,13 +37,16 @@ export default new Vuex.Store({
     },
     actions: {
         logIn(context, login) {
-            //console.log('store > actions > logIn');
+            console.log('store > actions > logIn');
+            console.log(login.email);
+            console.log(login.password);
+
 			return new Promise((resolve, reject) => {
 
-				axios.post(`${this.state.apiUrl}/account/Authenticate`, 
+				axios.post(`${this.state.apiUrl}/account/authenticate`, 
 					{
-						email: login.username,
-						password: login.password
+						Email: login.email,
+						Password: login.password
 					},
 					this.state.authHeader
 				).then(response => {

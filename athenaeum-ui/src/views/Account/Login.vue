@@ -35,7 +35,7 @@
             axios
                 .get(`${store.state.apiUrl}/application/testconnection`)
                 .then((response) => {
-                    console.log(response);
+                    console.log(response.data);
                 })
                 .catch((e) => {
                     console.log(e);
