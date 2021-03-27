@@ -27,7 +27,7 @@ namespace athenaeum_webapi.Controllers
         [HttpGet]
         public IActionResult TestDatabase()
         {
-            var user = _context.User.Include(i => i.Collections).ThenInclude(it => it.Collection).FirstOrDefault();
+            var user = _context.User.Include(i => i.UserCollections).ThenInclude(it => it.Collection).FirstOrDefault();
             return Ok("Connected to DB successfully");
         }
     }

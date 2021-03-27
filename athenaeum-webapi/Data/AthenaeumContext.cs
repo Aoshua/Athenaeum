@@ -22,15 +22,28 @@ namespace athenaeum_webapi.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>()
-                .HasMany(p => p.Collections)
-                .WithOne();
+            //modelBuilder.Entity<User>()
+            //    .HasMany(p => p.Collections)
+            //    .WithOne();
+
+            //modelBuilder.Entity<UserCollection>()
+            //    .HasOne(p => p.Collection);
+
+            //modelBuilder.Entity<UserCollection>()
+            //    .HasOne(p => p.User);
 
             modelBuilder.Entity<UserCollection>()
-                .HasOne(p => p.Collection);
+                .HasKey(k => new { k.UserId, k.CollectionId });
 
             modelBuilder.Entity<UserCollection>()
-                .HasOne(p => p.User);
+                .HasOne<User>(u => u.User)
+                .WithMany(uc => uc.UserCollections)
+                .HasForeignKey(k => k.UserId);
+
+            modelBuilder.Entity<UserCollection>()
+                .HasOne<Collection>(c => c.Collection)
+                .WithMany(uc => uc.UserCollections)
+                .HasForeignKey(k => k.CollectionId);
         }
     }
 }

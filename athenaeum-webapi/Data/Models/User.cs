@@ -17,7 +17,7 @@ namespace athenaeum_webapi.Data
         [MaxLength(36)]
         public string Salt { get; set; }
 
-        public List<UserCollection> Collections { get; set; }
+        public List<UserCollection> UserCollections { get; set; }
 
         [NotMapped]
         public string FullName => FirstName + " " + LastName;

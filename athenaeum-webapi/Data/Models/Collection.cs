@@ -10,5 +10,7 @@ namespace athenaeum_webapi.Data
         [MaxLength(250)]
         public string Title { get; set; }
         public DateTime StartDate { get; set; }
+
+        public List<UserCollection> UserCollections { get; set; }
     }
 }

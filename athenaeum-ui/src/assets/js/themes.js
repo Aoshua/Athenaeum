@@ -1,11 +1,11 @@
-const colors = {
-	darkModeColors: [
+const themes = {
+	dark: [
 		{
 			name: '--primary-menu-c',
 			value: '#272b2f'
 		}
 	],
-	lightModeColors: [
+	light: [
 		{
 			name: '--primary-menu-c',
 			value: '#1166a6'
