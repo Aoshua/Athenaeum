@@ -20,8 +20,8 @@
 </template>
 
 <script>
-    import axios from 'axios';
-    import store from '../../store/index.js';
+    import axios from "axios";
+    import store from "../../store/index.js";
 
     export default {
         name: "Login",
@@ -43,9 +43,6 @@
         },
         methods: {
             attemptLogin() {
-                //console.log(this.email);
-                //console.log(this.password);
-
                 this.$store
                     .dispatch("logIn", {
                         email: this.email,

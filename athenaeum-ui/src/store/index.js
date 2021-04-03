@@ -1,25 +1,31 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
-import Vuex from "vuex";
+import Vue from 'vue';
+import Vuex from 'vuex';
 import axios from 'axios';
 //import { themes } from '../assets/js/themes';
+import router from '../router/index';
+import VueCookies from 'vue-cookies'
+import createPersistedState from 'vuex-persistedstate';
+import createMutationsSharer from 'vuex-shared-mutations';
 
 Vue.use(Vuex);
+Vue.use(VueCookies);
+
+let session = Vue.$cookies.get('vuex');
+
+function isDefined(value) {
+    return (typeof value !== 'undefined' && value != null);
+}
 
 export default new Vuex.Store({
     state: {
-        loggedIn: false,
-        user: {},
-        token: {},
-        authHeader: {},
-        isDarkMode: false,
+        loggedIn: isDefined(session) ? session.loggedIn : false,
+        user: isDefined(session) ? session.user : {},
+        token: isDefined(session) ? session.token : {},
+        authHeader: isDefined(session) ? session.authHeader : {},
         apiUrl: 'https://localhost:44343'
     },
     mutations: {
         logIn(state, data) {
-            console.log('store > mutations > logIn');
-            console.log(data);
-            
             state.user = data.user;
             state.token = data.token;
 
@@ -30,24 +36,27 @@ export default new Vuex.Store({
                 }
             }
 
-            state.isLoggedIn = true;
-            VueRouter.push({ name: 'Home' });
+            state.loggedIn = true;
+            router.push({ name: 'Home' });
+        },
+        logOut(state) {
+            state.loggedIn = false;
+            state.user = {};
+            state.token = {};
+            state.authHeader = {};
+            router.push({name: 'Login'});
+            Vue.$cookies.remove('vuex'); // Is this working?
         }
     },
     actions: {
         logIn(context, credentials) {
-            //console.log('store > actions > logIn');
-            //console.log(credentials.email);
-            //console.log(credentials.password);
-
 			return new Promise((resolve, reject) => {
 
 				axios.post(`${this.state.apiUrl}/account/authenticate`, 
 					{
 						Email: credentials.email,
 						Password: credentials.password
-					},
-					this.state.authHeader
+					}
 				).then(r => {
 					context.commit('logIn', r.data);
 					resolve({
@@ -61,6 +70,23 @@ export default new Vuex.Store({
 				});
 			})
 		},
+        logOut(context) {
+            context.commit('logOut');
+            router.push('/');
+        }
     },
-    modules: {},
+    plugins: [
+        createPersistedState({ // Persists the Vuex state in cookies
+            getItem: (key) => Vue.$cookies.get(key),
+            setItem: (key, state) => {
+                Vue.$cookies.set(key, state, '20h');
+            }
+        }),
+        createMutationsSharer({ // Shares our mutations among browser tabs
+            predicate: [
+                'logIn',
+                'logOut'
+            ]
+        })
+    ]
 });
