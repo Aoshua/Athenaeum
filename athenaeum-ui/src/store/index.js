@@ -44,7 +44,6 @@ export default new Vuex.Store({
             state.user = {};
             state.token = {};
             state.authHeader = {};
-            router.push({name: 'Login'});
             Vue.$cookies.remove('vuex'); // Is this working?
         }
     },
