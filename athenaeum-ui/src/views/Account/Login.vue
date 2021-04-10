@@ -1,22 +1,28 @@
 <template>
     <div class="l-page">
         <div class="wrapper">
-            <div class="row">
-                <div class="col-12">
+            <div style="width: 100%">
+                <div class="mb-4 text-center">
                     <h2>.athenaeum</h2>
                 </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-12">
-                    <input type="email" class="form-control" v-model="email" placeholder="Email" />
+                <div class="form-group">
+                    <div class="mb-4">
+                        <input type="email" class="form-control" v-model="email" placeholder="Email" />
+                    </div>
+                    <div class="mb-4">
+                        <input type="password" class="form-control" v-model="password" placeholder="Password" />
+                    </div>
                 </div>
-                <div class="form-group col-12">
-                    <input type="password" class="form-control" v-model="password" placeholder="Password" />
-                </div>
-            </div>
-            <div class="btn-cont">
-                <button class="btn btn-pri" @click="attemptLogin" style="margin-right: 10px;">Login</button>
-                <button class="btn btn-sec" @click="attemptLogin">Register</button>
+                <!-- <button class="btn btn-pri btn-login mb-2" @click="attemptLogin">Login</button> -->
+                <button class="btn btn-sec btn-login mb-2" @click="attemptLogin">Login</button>
+                <!-- <button class="btn btn-ter btn-login mb-2" @click="attemptLogin">Login</button> -->
+                <!-- <button class="btn btn-qua btn-login mb-2" @click="attemptLogin">Login</button> -->
+                <!-- <button class="btn btn-qui btn-login mb-2" @click="attemptLogin">Login</button> -->
+                <button class="btn btn-pri-ol btn-login mb-2" @click="attemptLogin">Register</button>
+                <!-- <button class="btn btn-sec-ol btn-login mb-2" @click="attemptLogin">Register</button> -->
+                <!-- <button class="btn btn-ter-ol btn-login mb-2" @click="attemptLogin">Register</button> -->
+                <!-- <button class="btn btn-qua-ol btn-login mb-2" @click="attemptLogin">Register</button> -->
+                <!-- <button class="btn btn-qui-ol btn-login mb-2" @click="attemptLogin">Register</button> -->
             </div>
         </div>
     </div>
@@ -74,8 +80,9 @@
         justify-content: center;
         padding: 20px;
         background-color: var(--card-c);
-        width: 550px;
-        border-radius: 15px;
+        width: 400px;
+        border-radius: 7px;
+        box-shadow: 0 1px 4px 0 rgb(0 0 0 / 14%);
     }
 
     .l-page {
@@ -85,6 +92,10 @@
     }
 
     .btn-cont {
-        display: flex;
+        display: block;
+    }
+
+    .btn-login {
+        width: 100%;
     }
 </style>

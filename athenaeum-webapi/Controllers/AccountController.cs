@@ -32,21 +32,28 @@ namespace athenaeum_webapi.Controllers
         [HttpPost]
         public async Task<IActionResult> Authenticate([FromBody] Credentials credentials)
         {
-                var allegedUser = await _context.User.Where(x => x.Email == credentials.Email).AsNoTracking().FirstOrDefaultAsync();
+            var allegedUser = await _context.User.Where(x => x.Email == credentials.Email).AsNoTracking().FirstOrDefaultAsync();
+            if (allegedUser != null)
+            {
                 var passHash = Services.Cryptographer.ComputeSha256Hash(credentials.Password + allegedUser.Salt).ToUpper(); //MyPass111
 
-            if (allegedUser.Password.ToUpper() == passHash) // Login succeeds
-            {
-                return Ok(new
+                if (allegedUser.Password.ToUpper() == passHash) // Login succeeds
                 {
-                    User = new { UserId = allegedUser.UserId, FullName = allegedUser.FullName, Email = allegedUser.Email },
-                    Token = GetUserToken(allegedUser.UserId)
-                });
-            }
-            else // Login failed
+                    return Ok(new
+                    {
+                        User = new { UserId = allegedUser.UserId, FullName = allegedUser.FullName, Email = allegedUser.Email },
+                        Token = GetUserToken(allegedUser.UserId)
+                    });
+                }
+                else // Login failed
+                {
+                    return BadRequest(new { Message = "Invalid credentials." });
+                }
+            } else
             {
                 return BadRequest(new { Message = "Invalid credentials." });
             }
+                
         }
 
         private object GetUserToken(int userId)

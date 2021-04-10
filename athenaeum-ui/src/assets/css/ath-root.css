@@ -1,21 +1,26 @@
 :root {
-    --background-c: #121212;
-    --card-c: #1d1d1d;
+    --background-c: #1a2035;
+    --card-c: #202940;
     --chip-c: #373737;
-    --pri-c-l: #4acfac;
-    --pri-c: #4acfacd5;
-    --sec-c-l: #ffaf5f;
-    --sec-c: #ffaf5fd5;
+    --nav-c: #141827;
+
+    --transparent: #00000000;
+
+    --pri-c: #4acfac;
+    --pri-c-l: #4acfacd5;
+    --sec-c: #ffaf5f;
+    --sec-c-l: #ffaf5fd5;
     --ter-c-l: #7e8ce0;
     --ter-c: #7e8ce0d5;
     --qua-c-l: #fe8062;
     --qua-c: #fe8062d5;
     --qui-c-l: #55d1d8;
     --qui-c: #55d1d8d5;
+
     --pri-f-c: #ffffffe1;
     --sec-f-c: #ffffffa8;
     --ter-f-c: #121212;
-    --scrollbar-thumb-c: #000000ef;
+    --scrollbar-thumb-c: #000000d0;
 	--scrollbar-thumb-hover-c: #ffffff1c;
 	--scrollbar-thumb-active-c: #ffffff46;
 }
@@ -44,9 +49,8 @@ body {
 }
 
 /* Button Classes */
-.btn-pri, .btn-sec {
+.btn-pri, .btn-sec, .btn-ter, .btn-qua, .btn-qui {
     font-weight: 600;
-    border-radius: 15px !important;
     padding: 5px 20px;
     cursor: pointer;
 }
@@ -54,56 +58,107 @@ body {
 .btn-pri {
     background-color: var(--pri-c);
 }
-.btn-pri:hover {
-    background-color: var(--pri-c-l);
+.btn-pri:focus, .btn-pri:active, .btn-pri:hover {
+    box-shadow: 0px 0px 8px -2px var(--pri-c);
+}
+.btn-pri-ol:focus, .btn-pri-ol:active, .btn-pri-ol:hover {
+    box-shadow: 0px 0px 8px -2px var(--pri-c);
+    color: var(--pri-c);
+}
+.btn-pri-ol {
+    background-color: var(--transparent);
+    color: var(--pri-c);
+    border: 1px solid var(--pri-c);
 }
 
 .btn-sec {
     background-color: var(--sec-c);
 }
-.btn-sec:hover {
-    background-color: var(--sec-c-l);
+.btn-sec:focus, .btn-sec:active, .btn-sec:hover {
+    box-shadow: 0px 0px 8px -2px var(--sec-c);
+}
+.btn-sec-ol:focus, .btn-sec-ol:active, .btn-sec-ol:hover {
+    box-shadow: 0px 0px 8px -2px var(--sec-c);
+    color: var(--sec-c);
+}
+.btn-sec-ol {
+    background-color: var(--transparent);
+    color: var(--sec-c);
+    border: 1px solid var(--sec-c);
 }
 
 .btn-ter {
     background-color: var(--ter-c);
 }
-.btn-ter:hover {
-    background-color: var(--ter-c-l);
+.btn-ter:focus, .btn-ter:active, .btn-ter:hover {
+    box-shadow: 0px 0px 8px -2px var(--ter-c);
+}
+.btn-ter-ol:focus, .btn-ter-ol:active, .btn-ter-ol:hover {
+    box-shadow: 0px 0px 8px -2px var(--ter-c);
+    color: var(--ter-c);
+}
+.btn-ter-ol {
+    background-color: var(--transparent);
+    color: var(--ter-c);
+    border: 1px solid var(--ter-c);
 }
 
 .btn-qua {
     background-color: var(--qua-c);
 }
-.btn-qua:hover {
-    background-color: var(--qua-c-l);
+.btn-qua:focus, .btn-qua:active, .btn-qua:hover {
+    box-shadow: 0px 0px 8px -2px var(--pri-c);
+}
+.btn-qua-ol:focus, .btn-qua-ol:active, .btn-qua-ol:hover {
+    box-shadow: 0px 0px 8px -2px var(--qua-c);
+    color: var(--qua-c);
+}
+.btn-qua-ol {
+    background-color: var(--transparent);
+    color: var(--qua-c);
+    border: 1px solid var(--qua-c);
 }
 
 .btn-qui {
     background-color: var(--qui-c);
 }
-.btn-qui:hover {
-    background-color: var(--qui-c-l);
+.btn-qui:focus, .btn-qui:active, .btn-qui:hover {
+    box-shadow: 0px 0px 8px -2px var(--qui-c);
+}
+.btn-qui-ol:focus, .btn-qui-ol:active, .btn-qui-ol:hover {
+    box-shadow: 0px 0px 8px -2px var(--qui-c);
+    color: var(--qui-c);
+}
+.btn-qui-ol {
+    background-color: var(--transparent);
+    color: var(--qui-c);
+    border: 1px solid var(--qui-c);
 }
 
 /* Bootstrap Overrides */
 .form-control {
-    background-color: var(--chip-c);
-    border: 1px solid var(--background-c);
+    background-color: var(--transparent);
     color: var(--pri-f-c);
-    border-radius: 5px !important;
+    border: none !important;
+    border-bottom: 1px solid var(--pri-f-c) !important; 
+    border-radius: 0px;
 }
 
 .form-control:active, .form-control:focus {
-    background-color: var(--chip-c);
+    background-color: var(--transparent);
     color: var(--pri-f-c);
 }
 
-.form-control:focus, .form-control:active, .btn:focus, .btn:active {
-    box-shadow: 0px 0px 8px -2px var(--pri-c);
+.form-control:focus, .form-control:active {
+    box-shadow: none;
     outline: none;
-    border: 1px solid var(--pri-c);
+    border: none;
+    border-bottom: 1px solid var(--pri-c) !important;
     border-radius: initial;
+}
+
+.form-control::placeholder {
+    color: var(--sec-f-c);
 }
 
 /* Autocomplete */
@@ -119,7 +174,7 @@ select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
 	border: 1px solid var(--background-c);
 	-webkit-text-fill-color: var(--pri-f-c);
-	-webkit-box-shadow: 0 0 0px 1000px var(--chip-c) inset;
+	-webkit-box-shadow: 0 0 0px 1000px var(--transparent) inset;
 	transition: background-color 5000s ease-in-out 0s;
 }
 
