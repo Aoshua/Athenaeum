@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div class="wrapper box-shadow">
+    <div class="l-page">
+        <div class="wrapper">
             <div class="row">
                 <div class="col-12">
                     <h2>.athenaeum</h2>
@@ -14,7 +14,10 @@
                     <input type="password" class="form-control" v-model="password" placeholder="Password" />
                 </div>
             </div>
-            <button class="btn btn-primary" @click="attemptLogin">Login</button>
+            <div class="btn-cont">
+                <button class="btn btn-pri" @click="attemptLogin" style="margin-right: 10px;">Login</button>
+                <button class="btn btn-sec" @click="attemptLogin">Register</button>
+            </div>
         </div>
     </div>
 </template>
@@ -69,8 +72,19 @@
         align-items: center;
         flex-direction: column;
         justify-content: center;
-        width: 100%;
-        min-height: 100%;
         padding: 20px;
+        background-color: var(--card-c);
+        width: 550px;
+        border-radius: 15px;
+    }
+
+    .l-page {
+        display: flex;
+        justify-content: center;
+        margin: 4rem 0.75rem;
+    }
+
+    .btn-cont {
+        display: flex;
     }
 </style>

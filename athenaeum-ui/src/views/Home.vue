@@ -3,6 +3,28 @@
         <img alt="Vue logo" src="../assets/logo.png" />
         <HelloWorld msg="Welcome to Your Vue.js App" />
         <button @click="logOut">Log Out</button>
+        <p>blah</p>
+        <p>blah</p>
+        <p>blah</p>
+        <p>blah</p>
+        <p>blah</p>
+        <p>blah</p>
+        <p>blah</p>
+        <p>blah</p>
+        <p>blah</p>
+        <p>blah</p>
+        <p>blah</p>
+        <p>blah</p>
+        <p>blah</p>
+        <p>blah</p>
+        <p>blah</p>
+        <p>blah</p>
+        <p>blah</p>
+        <p>blah</p>
+        <p>blah</p>
+        <p>blah</p>
+        <p>blah</p>
+
     </div>
 </template>
 
