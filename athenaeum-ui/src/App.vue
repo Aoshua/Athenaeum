@@ -1,10 +1,13 @@
 <template>
     <div id="app">
-        <div v-if="this.$store.state.loggedIn" class="top-nav">
-            <router-link to="/">Home</router-link> |
-            <router-link to="/about">About</router-link>
+        <div v-if="this.$store.state.loggedIn" >
+            <div class="top-nav">
+                <router-link to="/">Home</router-link> |
+                <router-link to="/about">About</router-link>
+            </div>
+            <router-view style="margin-top: 50px;" />
         </div>
-        <router-view style="margin-top: 50px;" />
+        <router-view v-else />
     </div>
 </template>
 
