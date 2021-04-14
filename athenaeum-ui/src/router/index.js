@@ -2,6 +2,8 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Login from "../views/Account/Login.vue";
+import Collections from "../views/Collections.vue";
+import Profile from "../views/Account/Profile.vue";
 import store from "../store";
 
 Vue.use(VueRouter);
@@ -28,7 +30,7 @@ const routes = [
         },
     },
     {
-        path: "/Home",
+        path: "/home",
         name: "Home",
         component: Home,
         beforeEnter: checkLoginStatus
@@ -40,6 +42,18 @@ const routes = [
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
         component: () => import(/* webpackChunkName: "about" */ "../views/About.vue"),
+        beforeEnter: checkLoginStatus
+    },
+    {
+        path: "/collections",
+        name: "Collections",
+        component: Collections,
+        beforeEnter: checkLoginStatus
+    },
+    {
+        path: "/profile",
+        name: "Profile",
+        component: Profile,
         beforeEnter: checkLoginStatus
     },
 ];
