@@ -13,5 +13,7 @@ namespace athenaeum_webapi.Data
         public int CollectionId { get; set; }
         [MaxLength(250)]
         public string PurchaseLocation { get; set; }
+
+        public Book Book { get; set; }
     }
 }

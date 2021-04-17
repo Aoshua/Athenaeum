@@ -32,10 +32,10 @@ namespace athenaeum_webapi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             #region Authentication
-            services.AddSingleton<IConfiguration>(Configuration);
+            services.AddSingleton(Configuration);
             var config = Configuration.GetSection("AppSettings");
             var secret = config.GetChildren().FirstOrDefault().Value;
 
@@ -68,8 +68,6 @@ namespace athenaeum_webapi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "athenaeum_webapi", Version = "v1" });
             });
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -88,6 +86,7 @@ namespace athenaeum_webapi
 
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

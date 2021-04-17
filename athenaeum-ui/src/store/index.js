@@ -31,7 +31,7 @@ export default new Vuex.Store({
 
             // TODO: If the tokenExpiration time has passed, refresh the token
             state.authHeader = {
-                header: {
+                headers: {
                     Authorization: `Bearer ${data.token.accessToken}`
                 }
             }

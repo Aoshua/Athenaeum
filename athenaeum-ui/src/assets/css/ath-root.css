@@ -136,6 +136,15 @@ body {
 }
 
 
+/* Cards: */
+.ath-card {
+    background-color: var(--card-c);
+    border-radius: 10px;
+    padding: 10px;
+    /* margin: 8px; */
+}
+
+
 /* Mic. */
 .ath-link {
     color: var(--pri-f-c);

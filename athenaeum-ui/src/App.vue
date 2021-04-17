@@ -16,7 +16,7 @@
                     </router-link>
                 </div>
             </div>
-            <router-view style="height: calc(100vh - 50px); margin-top: 50px; overflow: auto;" />
+            <router-view style="height: calc(100vh - 50px); margin-top: 50px; overflow: auto; padding: 10px" />
         </div>
         <router-view v-else />
     </div>
@@ -47,7 +47,7 @@
     .tip-cont .tip-text {
         visibility: hidden;
         width: 120px;
-        background-color: rgba(0, 0, 0, .4);
+        background-color: rgba(0, 0, 0, .9);
         color: var(--pri-f-c);
         text-align: center;
         padding: 5px 0px;

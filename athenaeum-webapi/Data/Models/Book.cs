@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace athenaeum_webapi.Data
@@ -14,5 +15,7 @@ namespace athenaeum_webapi.Data
         public int? PageCount { get; set; }
         public int? PublisherId { get; set; }
         public DateTime? PublicationDate { get; set; }
+
+        public List<BookInCollection> BooksInCollection { get; set; }
     }
 }
