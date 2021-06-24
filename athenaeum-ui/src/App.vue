@@ -14,7 +14,7 @@
                         <i class="fal fa-user fa-lg"></i>
                         <span class="tip-text">Profile</span>
                     </router-link>
-                    <div class="ath-link menu-icon tip-cont" data-toggle="modal" data-target="#exampleModal">
+                    <div class="ath-link menu-icon tip-cont" data-toggle="modal" data-target="#alertModal">
                         <i class="fal fa-sign-out-alt fa-lg"></i>
                         <span class="tip-text" style="margin-left: -100px;">Logout</span>
                     </div>
@@ -23,27 +23,26 @@
             <router-view style="height: calc(100vh - 50px); margin-top: 50px; overflow: auto; padding: 10px" />
         </div>
         <router-view v-else />
-
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="d-flex justify-content-end">
-                        <div data-dismiss="modal" aria-label="Close" style="padding: .5rem 1rem; cursor: pointer">
-                            <i class="fa fa-times"></i>
-                        </div>
-                    </div>
-                    <div class="modal-body">
-                        Are you sure you want to log out?
-                    </div>
-                    <div class="modal-footer" style="border-top: none; padding: 5px">
-                        <button class="btn btn-sec-ol btn-login mb-2">Cancel</button>
-                        <button class="btn btn-pri-ol btn-login mb-2">Logout</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <alert-modal yesText="Logout" noText="Cancel" message="Are you sure you want to log out?" @approve="logout"></alert-modal>
     </div>
 </template>
+
+<script>
+import AlertModal from "./components/Modals/AlertModal"
+
+export default {
+    name: "App",
+    components: {
+        AlertModal
+    },
+    methods: {
+        logout() {
+            console.log('logging out...');
+        }
+    }
+}
+</script>
+
 
 <style scoped>
     .top-nav {
@@ -56,10 +55,6 @@
         justify-content: space-between;
         align-items: center;
         padding: 0px 20px;
-    }
-
-    .modal-content {
-        background-color: var(--background-c);
     }
 
     .menu-icon {
