@@ -11,8 +11,8 @@
                     {{ message }}
                 </div>
                 <div class="modal-footer" style="border-top: none; padding: 5px">
-                    <button class="btn btn-sec-ol btn-login mb-2" data-dismiss="modal">{{ noText }}</button>
-                    <button class="btn btn-pri-ol btn-login mb-2" @click="$emit('approve')">{{ yesText }}</button>
+                    <button ref="cancelAlert" class="btn btn-sec-ol btn-login mb-2" data-dismiss="modal">{{ noText }}</button>
+                    <button class="btn btn-pri-ol btn-login mb-2" @click="$emit('approve'); $refs.cancelAlert.click()">{{ yesText }}</button>
                 </div>
             </div>
         </div>

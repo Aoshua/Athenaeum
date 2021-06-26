@@ -10,7 +10,7 @@ import createMutationsSharer from 'vuex-shared-mutations';
 Vue.use(Vuex);
 Vue.use(VueCookies);
 
-let session = Vue.$cookies.get('vuex');
+let session = localStorage.getItem("vuex")
 
 function isDefined(value) {
     return (typeof value !== 'undefined' && value != null);
@@ -26,8 +26,8 @@ export default new Vuex.Store({
     },
     mutations: {
         logIn(state, data) {
-            state.user = data.user;
-            state.token = data.token;
+            state.user = data.user
+            state.token = data.token
 
             // TODO: If the tokenExpiration time has passed, refresh the token
             state.authHeader = {
@@ -36,15 +36,13 @@ export default new Vuex.Store({
                 }
             }
 
-            state.loggedIn = true;
-            router.push({ name: 'Home' });
+            state.loggedIn = true
+            router.push({ name: 'Home' })
         },
         logOut(state) {
-            state.loggedIn = false;
-            state.user = {};
-            state.token = {};
-            state.authHeader = {};
-            Vue.$cookies.remove('vuex'); // Is this working?
+            state.loggedIn = false
+            localStorage.removeItem('vuex') // Not removing..
+            router.push('/')
         }
     },
     actions: {
@@ -70,17 +68,11 @@ export default new Vuex.Store({
 			})
 		},
         logOut(context) {
-            context.commit('logOut');
-            router.push('/');
+            context.commit('logOut')
         }
     },
     plugins: [
-        createPersistedState({ // Persists the Vuex state in cookies
-            getItem: (key) => Vue.$cookies.get(key),
-            setItem: (key, state) => {
-                Vue.$cookies.set(key, state, '20h');
-            }
-        }),
+        createPersistedState(),
         createMutationsSharer({ // Shares our mutations among browser tabs
             predicate: [
                 'logIn',

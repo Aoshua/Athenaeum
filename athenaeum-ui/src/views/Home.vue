@@ -9,7 +9,6 @@
             <collection-book-card v-for="record in records" :key="record.BookID" :record="record" />
             <collection-book-card v-for="record in records" :key="record.BookID" :record="record" />
         </div>
-        <button type="button" class="btn btn-qui-ol" @click="logOut">Logout</button>
     </div>
 </template>
 
