@@ -18,6 +18,7 @@ namespace athenaeum_webapi.Data
         public string Salt { get; set; }
 
         public List<UserCollection> UserCollections { get; set; }
+        public List<UserBook> UserBooks { get; set; }
 
         [NotMapped]
         public string FullName => FirstName + " " + LastName;

@@ -13,9 +13,10 @@ namespace athenaeum_webapi.Data
         [MaxLength(250)]
         public string Title { get; set; }
         public int? PageCount { get; set; }
-        public int? PublisherId { get; set; }
         public DateTime? PublicationDate { get; set; }
 
+        public List<BookPublisher> BookPublishers { get; set; }
         public List<BookInCollection> BooksInCollection { get; set; }
+        public List<UserBook> UserBooks { get; set; }
     }
 }

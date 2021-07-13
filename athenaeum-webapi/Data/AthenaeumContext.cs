@@ -22,23 +22,32 @@ namespace athenaeum_webapi.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<UserCollection>()
-                .HasKey(k => new { k.UserId, k.CollectionId });
+            modelBuilder.Entity<User>()
+                .HasMany(x => x.UserBooks)
+                .WithOne(x => x.User)
+                .HasForeignKey(x => x.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<User>()
+                .HasMany(x => x.UserCollections)
+                .WithOne(x => x.User)
+                .HasForeignKey(x => x.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<UserBook>()
+                .HasOne(x => x.Book)
+                .WithMany(x => x.UserBooks)
+                .HasForeignKey(x => x.UserBookId);
 
             modelBuilder.Entity<UserCollection>()
-                .HasOne(u => u.User)
-                .WithMany(uc => uc.UserCollections)
-                .HasForeignKey(k => k.UserId);
+                .HasOne(x => x.Collection)
+                .WithMany(x => x.UserCollections)
+                .HasForeignKey(x => x.UserCollectionId);
 
-            modelBuilder.Entity<UserCollection>()
-                .HasOne(c => c.Collection)
-                .WithMany(uc => uc.UserCollections)
-                .HasForeignKey(k => k.CollectionId);
-
-            modelBuilder.Entity<BookInCollection>()
-                .HasOne(b => b.Book)
-                .WithMany(bc => bc.BooksInCollection)
-                .HasForeignKey(k => k.BookId);
+            modelBuilder.Entity<Book>()
+                .HasMany(x => x.BooksInCollection)
+                .WithOne(x => x.Book)
+                .HasForeignKey(x => x.BookId);
         }
     }
 }

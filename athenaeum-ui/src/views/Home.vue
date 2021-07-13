@@ -29,14 +29,15 @@
                 numBooks: 0
             };
         },
-        mounted() {
-            this.loadCollection();
+        async created() {
+            await this.loadCollection();
         },
         methods: {
             logOut() {
                 store.dispatch("logOut");
             },
             async loadCollection() {
+                console.log('userId:', store.state.user.userId);
                 let colUrl = `${store.state.apiUrl}/collection/getBooksInDefaultCollection?userId=${store.state.user.userId}`;
 
                 let r = await axios.get(colUrl, store.state.authHeader);

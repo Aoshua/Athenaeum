@@ -25,14 +25,15 @@ namespace athenaeum_webapi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetBooksInDefaultCollection(int userId)
         {
-            // TODO: modify database to have an "is default" column
-            var collection = await context.UserCollection.Include(i => i.Collection)
-                .Where(x => x.UserId == userId).AsNoTracking().FirstOrDefaultAsync();
-            var collectionId = collection.CollectionId;
-            var books = await context.BookInCollection.Include(i => i.Book)
-                .Where(x => x.CollectionId == collectionId).AsNoTracking().ToListAsync();
+            //var collection = await context.UserCollection.Include(i => i.Collection)
+            //    .Where(x => x.UserId == userId).AsNoTracking().FirstOrDefaultAsync(); // TODO: modify database to have an "is default" column
 
-            return Ok(new { CollectionTitle = collection.Collection.Title, RecordCount = books.Count, Records = books });
+            //var books = await context.BookInCollection
+            //    .Include(i => i.Book) //.ThenInclude(j => j.BookPublishers).ThenInclude(k => k.Publisher)
+            //    .Where(x => x.CollectionId == collection.CollectionId).AsNoTracking().ToListAsync();
+
+            //return Ok(new { CollectionTitle = collection.Collection.Title, RecordCount = books.Count, Records = books });
+            return BadRequest("Not implemented");
         }
     }
 }

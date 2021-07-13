@@ -12,5 +12,6 @@ namespace athenaeum_webapi.Data
         public DateTime StartDate { get; set; }
 
         public List<UserCollection> UserCollections { get; set; }
+        public List<BookInCollection> BookInCollection { get; set; }
     }
 }
